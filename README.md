@@ -1,15 +1,33 @@
-Git Repository for ICAgile-Programming exercises @Anecon
+# Dependency Breaking Katas #
 
-Branch „master“: 
-*	Ausgangsposition (= „exercise 1“) oder noch weniger also leer
+Exercises to practice breaking dependencies in legacy
+code to create tests for it.
 
-Branch „exercise N“: 
-*	pro Aufgabe ein Branch
-*	kann entweder vom master oder von einer vorherigen Aufgabe verzweigt werden
-*	wenn die Aufgaben auf einander aufbauen, dann sollte die Lösung der vorigen Aufgabe enthalten sein
+## Assignments for Techniques ##
 
-Branch „solution N“:
-*	wenn eine Folge-Aufgabe eine ganz neue Struktur hat, dann sollten wir einen Branch für eine mögliche „solution N“ anlegen
-*	für alle Lösungen sollte es einen gemeinsamen „solution“ Branch geben
+We have some legacy code. We need to make changes.
+To make changes we need to create/add tests.
+We might have to change some code to enable testing.
+We need to introduce so-called Seams (see [Michael
+Feathers' Working Effectively with Legacy
+Code](https://www.goodreads.com/book/show/44919.Working_Effectively_with_Legacy_Code)).
 
+Assignments for specific techniques (in recommended order)
 
+* Parameterise Constructor
+* Subclass And Override Method
+* Extract And Override Call
+
+WIP
+
+* Replace Global Reference With Getter
+* Extract And Override Factory Method
+
+NEXT
+
+* Extract Interface
+* Adapt Parameter
+
+### License ###
+
+[New BSD License](http://opensource.org/licenses/bsd-license.php), see `license.txt` in repository.
