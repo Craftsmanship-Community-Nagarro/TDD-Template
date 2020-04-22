@@ -1,5 +1,5 @@
-using Xunit;
 using FluentAssertions;
+using Xunit;
 
 namespace CSharpCore.Test
 {
@@ -12,7 +12,7 @@ namespace CSharpCore.Test
 
             string greeting = hello.Greetings();
 
-            greeting.Should().Be("Hello!");
+            greeting.Should().Be("fixme");
         }
     }
 }
