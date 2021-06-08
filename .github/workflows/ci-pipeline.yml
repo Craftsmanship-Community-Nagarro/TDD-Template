@@ -1,40 +1,43 @@
-# This is a basic workflow to help you get started with Actions
+name: ci pipeline
 
-name: learn-github-actions
-
-# Controls when the action will run. 
 on: [push]
 
+defaults:
+  run:
+    working-directory: ./CSharpCore
+    
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
+  
     runs-on: ubuntu-latest
-
+  
     steps:
-      - name: Checkout Repository
+      - name: checkout source
         uses: actions/checkout@v2
-
-      - name: Set up Java
-        uses: actions/setup-java@v2
+      - name: Setup dotnet build
+        uses: actions/setup-dotnet@v1
         with:
-          distribution: 'adopt'
-          java-version: '11'
+          dotnet-version: 3.1.x
           
-      - name: Cache Maven packages
+      - name: use nuget cache
         uses: actions/cache@v2
         with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('Java/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
-          
-      - name: Build and test
-        working-directory: ./Java
-        run: |
-          mvn -B clean test
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget
+      - name: install dependencies
+        run: dotnet restore
+      - name: build solution
+        run: dotnet build
+      - name: run unit tests
+        run: dotnet test --logger "trx;logfilename=${GITHUB_WORKSPACE}/res.trx"
 
-      - name: Publish Unit Tests
-        uses: EnricoMi/publish-unit-test-result-action@v1.17
-        if: always()
+      - name: Test Reporter
+        uses: dorny/test-reporter@v1.4.3
         with:
-          files: ./Java/target/**/*.xml
+          name: publish test results
+
+          path: "res.trx"
+          reporter: dotnet-trx
+          fail-on-error: false
