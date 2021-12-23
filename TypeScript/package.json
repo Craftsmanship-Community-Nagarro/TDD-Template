@@ -1,5 +1,5 @@
 {
-  "name": "code examples",
+  "name": "codeexamples",
   "version": "0.0.1",
   "scripts": {
     "compile": "tsc -w",
