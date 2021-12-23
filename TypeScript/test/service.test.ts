@@ -33,7 +33,7 @@ class ShippingCostService {
         }
 
         const distanceInKm = this.geoService.distanceBetweenInKm({code: "AT"}, country);
-        return distanceInKm * 0.09;
+        return Math.max(distanceInKm * 0.09,15);
     }
 }
 
@@ -54,25 +54,13 @@ describe("Shipping Cost Service", () => {
     });
 
     it("should return 50 when country in North America and Delivery Type Express", () => {
-        const geoServiceStub: GeoService = {
-            distanceBetweenInKm: (from: Country, to: Country): number => 0,
-            isInNorthAmerica: (country: Country) => true,
-            isInCommonMarket: (country: Country) => false,
-        };
-
-        const sut = new ShippingCostService(geoServiceStub);
+        const sut = new ShippingCostService(buildGeoServiceStub(false,true));
 
         expect(sut.calculateCost({code: "US"}, DeliveryType.Express)).toEqual(50);
     });
 
     it("should return 50 when country in North America and Delivery Type Standard", () => {
-        const geoServiceStub: GeoService = {
-            distanceBetweenInKm: (from: Country, to: Country): number => 0,
-            isInNorthAmerica: (country: Country) => true,
-            isInCommonMarket: (country: Country) => false
-        };
-
-        const sut = new ShippingCostService(geoServiceStub);
+        const sut = new ShippingCostService(buildGeoServiceStub(false,true));
 
         expect(sut.calculateCost({code: "US"}, DeliveryType.Standard)).toEqual(
             35
@@ -80,14 +68,14 @@ describe("Shipping Cost Service", () => {
     });
 
     it("should return 90 when country neither in North America nor Common Market", () => {
-        const geoServiceStub: GeoService = {
-            isInNorthAmerica: (country: Country) => false,
-            isInCommonMarket: (country: Country) => false,
-            distanceBetweenInKm: (from: Country, to: Country) => 1000
-        };
-
-        const sut = new ShippingCostService(geoServiceStub);
+        const sut = new ShippingCostService(buildGeoServiceStub(false,false,1000));
 
         expect(sut.calculateCost({code: "RU"})).toEqual(90);
+    });
+
+    it("should return 15 when country neither in North America nor Common Market", () => {
+        const sut = new ShippingCostService(buildGeoServiceStub(false,false,100));
+
+        expect(sut.calculateCost({code: "CH"})).toEqual(15);
     });
 });
