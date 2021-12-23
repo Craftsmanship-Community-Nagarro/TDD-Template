@@ -2,6 +2,7 @@ interface Country {
 }
 
 class ShippingCostService {
+
     calculateCost(country: Country): number {
         return -1;
     }
@@ -10,7 +11,15 @@ class ShippingCostService {
 describe("Shipping Cost", () => {
 
     it("should return 5 when country in common market", () => {
-        let sut = new ShippingCostService();
+
+        let geoServiceStub =
+            {
+                function isInCommonMarket (country : Country) {
+                    return true;
+                }
+            };
+
+        let sut = new ShippingCostService(geoServiceStub);
 
         expect(sut.calculateCost({code: "DE"})).toEqual(5);
     });
