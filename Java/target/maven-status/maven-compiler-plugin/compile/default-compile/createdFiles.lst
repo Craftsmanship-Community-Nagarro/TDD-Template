@@ -1,1 +1,3 @@
-org\nagarro\Hello.class
+org\nagarro\StockItem.class
+org\nagarro\Currency.class
+org\nagarro\Money.class
