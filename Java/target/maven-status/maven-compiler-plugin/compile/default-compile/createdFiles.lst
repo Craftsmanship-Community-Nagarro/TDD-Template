@@ -1,3 +1,6 @@
+org\nagarro\ConversionElement.class
+org\nagarro\CurrencyConverter.class
+org\nagarro\Money.class
+org\nagarro\CurrencyTable.class
 org\nagarro\StockItem.class
 org\nagarro\Currency.class
-org\nagarro\Money.class
