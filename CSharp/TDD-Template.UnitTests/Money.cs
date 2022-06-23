@@ -8,7 +8,10 @@
         internal Money Multiply(decimal share)
             => new() { Amount = this.Amount * share, Currency = this.Currency };
 
-        internal Money Divide(int v)
+        internal Money Divide(decimal share) 
+            => new() { Amount = this.Amount / share, Currency = this.Currency };
+
+        internal Money Add(Money money)
         {
             throw new NotImplementedException();
         }
