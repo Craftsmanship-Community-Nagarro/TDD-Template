@@ -1,13 +1,15 @@
 ﻿namespace TDD_Template.UnitTests
 {
-    internal class Money
+    internal record Money
     {        
         public decimal Amount { get; init; }
         public string Currency { get; init; }
 
         internal Money Multiply(decimal share)
         {
-            return null;
+            var x = this.Amount * share;
+
+            return new Money { Amount = x, Currency = this.Currency };
         }
     }
 }
