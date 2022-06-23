@@ -24,4 +24,20 @@ public class MoneyTest
         var moneyResult = moneyInput.Add(new Money() { Amount = 100m, Currency = "KRW" });
         moneyResult.Should().Be(new Money() { Amount = 4102m, Currency = "KRW" });
     }
+
+    [Fact]
+    public void AddWithNull()
+    {
+        var moneyInput = new Money() { Amount = 4002m, Currency = "KRW" };
+        var moneyResult = moneyInput.Add(null!);
+        moneyResult.Should().Be(new Money() { Amount = 4002m, Currency = "KRW" });
+    }
+
+    [Fact]
+    public void AddWithDifferentCurrency()
+    {
+        var moneyInput = new Money() { Amount = 5m, Currency = "USD" };
+        var moneyResult = moneyInput.Add(new Money() { Amount = 10m, Currency = "EUR" });
+        moneyResult.Should().Be(new Money() { Amount = 17m, Currency = "USD" });
+    }
 }

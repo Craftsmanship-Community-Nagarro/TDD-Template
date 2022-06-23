@@ -12,8 +12,6 @@
             => new() { Amount = this.Amount / share, Currency = this.Currency };
 
         internal Money Add(Money money)
-        {
-            throw new NotImplementedException();
-        }
+            => new() { Amount = this.Amount + (money?.Amount ?? 0.0m), Currency = this.Currency };
     }
 }
