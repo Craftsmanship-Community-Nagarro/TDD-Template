@@ -12,6 +12,21 @@
             => new() { Amount = this.Amount / share, Currency = this.Currency };
 
         internal Money Add(Money money)
-            => new() { Amount = this.Amount + (money?.Amount ?? 0.0m), Currency = this.Currency };
+        {
+            if (money is null)
+            {
+                return new() { Amount = this.Amount, Currency = this.Currency };
+            }
+
+            if (string.Compare(this.Currency, money.Currency, StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                return new() { Amount = this.Amount + money.Amount, Currency = this.Currency };
+            }
+
+            decimal exchangeRate = 1.2m;
+            var exchange = money.Amount * exchangeRate;
+
+            return new() { Amount = this.Amount + exchange, Currency = this.Currency };
+        }
     }
 }

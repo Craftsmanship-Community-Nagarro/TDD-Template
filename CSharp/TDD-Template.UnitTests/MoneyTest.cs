@@ -40,4 +40,12 @@ public class MoneyTest
         var moneyResult = moneyInput.Add(new Money() { Amount = 10m, Currency = "EUR" });
         moneyResult.Should().Be(new Money() { Amount = 17m, Currency = "USD" });
     }
+
+    [Fact]
+    public void AddWithAnotherDifferentCurrency()
+    {
+        var moneyInput = new Money() { Amount = 1100m, Currency = "KRW" };
+        var moneyResult = moneyInput.Add(new Money() { Amount = 1m, Currency = "USD" });
+        moneyResult.Should().Be(new Money() { Amount = 2200, Currency = "KRW" });
+    }
 }
