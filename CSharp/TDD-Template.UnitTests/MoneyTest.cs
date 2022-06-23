@@ -7,7 +7,7 @@ public class MoneyTest
     public void Multiply()
     {
         var dollarInput = new Money() { Amount = 5.0m, Currency = "USD" };
-        dollarInput.Multiply(2).Should().Be(new Money() { Amount = 10m, Currency = "USD" });
+        dollarInput.Multiply(2).Should().Be(new Money() { Amount = 10.0m, Currency = "USD" });
     }
 
     [Fact]
@@ -43,7 +43,7 @@ public class MoneyTest
 
     [Fact]
     public void AddWithAnotherDifferentCurrency()
-    {
+    {        
         var moneyInput = new Money() { Amount = 1100m, Currency = "KRW" };
         var moneyResult = moneyInput.Add(new Money() { Amount = 1m, Currency = "USD" });
         moneyResult.Should().Be(new Money() { Amount = 2200, Currency = "KRW" });
