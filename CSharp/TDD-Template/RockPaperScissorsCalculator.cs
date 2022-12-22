@@ -2,13 +2,22 @@
 {
     public class RockPaperScissorsCalculator
     {
-        public int CalculateOutcome(string inputOpponent, string inputMyself)
+        public int CalculateOutcome(char opponent, char myself)
         {
-            if (inputOpponent[0] == 'A' && inputMyself[0] == 'X')
+            if (IsDraw(opponent, myself))
             {
-                return 4;
+                if (myself == 'X')
+                    return 4;
+                if (myself == 'Y')
+                    return 5;
+
             }
             return 8;
+        }
+
+        private bool IsDraw(char opponent, char myself)
+        {
+            return opponent == 'A' && myself == 'X' || opponent == 'B' && myself == 'Y';
         }
     }
 }

@@ -2,11 +2,12 @@ namespace TDD_Template.UnitTests;
 
 public class RockPaperScissorsTest
 {
+    private RockPaperScissorsCalculator rpsCalc = new RockPaperScissorsCalculator();
+
     [Fact]
     public void PaperShouldDefeatRock()
     {
-        var rpsCalc = new RockPaperScissorsCalculator();
-        int result = rpsCalc.CalculateOutcome("A", "Y");
+        int result = rpsCalc.CalculateOutcome('A','Y');
 
         result.Should().Be(8);
     }
@@ -14,9 +15,16 @@ public class RockPaperScissorsTest
     [Fact]
     public void RockShouldDrawRock()
     {
-        var rpsCalc = new RockPaperScissorsCalculator();
-        int result = rpsCalc.CalculateOutcome("A", "X");
+        int result = rpsCalc.CalculateOutcome('A', 'X');
 
         result.Should().Be(4);
+    }
+
+    [Fact]
+    public void PaperShouldDrawPaper()
+    {
+        int result = rpsCalc.CalculateOutcome('B', 'Y');
+
+        result.Should().Be(5);
     }
 }
