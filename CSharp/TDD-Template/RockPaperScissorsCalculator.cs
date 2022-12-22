@@ -8,37 +8,35 @@
         public int CalculateOutcome(char opponent, char myself)
         {
             Shape myShape = CreateShape(myself);
-            if (IsDraw(opponent, myself))
+            Shape opponentShape = CreateShape(opponent);
+
+            if (IsDraw(opponentShape, myShape))
             {
                 return DRAW_SCORE + (int)myShape;
             }
+
             return WIN_SCORE + (int) myShape;
         }
 
-        private static Shape CreateShape(char myself)
+        private bool IsDraw(Shape opponentShape, Shape myShape)
         {
-            Shape shape = 0;
-            switch (myself)
-            {
-                case 'X':
-                    shape = Shape.Rock;
-                    break;
-                case 'Y':
-                    shape = Shape.Paper;
-                    break;
-                case 'Z':
-                    shape = Shape.Scissor;
-                    break;
-            }
-
-            return shape;
+            return opponentShape == myShape;
         }
 
-        private bool IsDraw(char opponent, char myself)
+        private static Shape CreateShape(char input)
         {
-            return opponent == 'A' && myself == 'X' 
-                || opponent == 'B' && myself == 'Y'
-                || opponent == 'C' && myself == 'Z';
+            Shape shape = input switch
+            {
+                'X' => Shape.Rock,
+                'A' => Shape.Rock,
+                'Y' => Shape.Paper,
+                'B' => Shape.Paper,
+                'Z' => Shape.Scissor,
+                'C' => Shape.Scissor,
+                _ => 0
+            };
+
+            return shape;
         }
     }
 
