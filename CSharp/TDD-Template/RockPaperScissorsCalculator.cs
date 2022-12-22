@@ -5,10 +5,10 @@
         private const int DRAW_SCORE = 3;
         private const int WIN_SCORE = 6;
 
-        public int CalculateOutcome(char opponent, char myself)
+        public int CalculateScore(char opponent, char myself)
         {
-            Shape myShape = CreateShape(myself);
-            Shape opponentShape = CreateShape(opponent);
+            var myShape = CreateShape(myself);
+            var opponentShape = CreateShape(opponent);
 
             if (IsDraw(opponentShape, myShape))
             {
@@ -29,7 +29,7 @@
                             || myShape == Shape.Paper && opponentShape == Shape.Scissor;
         }
 
-        private bool IsDraw(Shape opponentShape, Shape myShape)
+        private static bool IsDraw(Shape opponentShape, Shape myShape)
         {
             return opponentShape == myShape;
         }
@@ -49,12 +49,5 @@
 
             return shape;
         }
-    }
-
-    public enum Shape
-    {
-        Rock = 1,
-        Paper = 2,
-        Scissor = 3
     }
 }

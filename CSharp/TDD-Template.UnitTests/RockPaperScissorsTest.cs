@@ -10,7 +10,7 @@ public class RockPaperScissorsTest
     [InlineData('C', 'X', 7)]
     public void MyShapeShouldWin(char opponentMove, char myMove, int expectedResult)
     {
-        int result = rpsCalc.CalculateOutcome(opponentMove, myMove);
+        int result = rpsCalc.CalculateScore(opponentMove, myMove);
 
         result.Should().Be(expectedResult);
     }
@@ -21,7 +21,7 @@ public class RockPaperScissorsTest
     [InlineData('C', 'Y', 2)]
     public void MyShapeShouldLoose(char opponentMove, char myMove, int expectedResult)
     {
-        int result = rpsCalc.CalculateOutcome(opponentMove, myMove);
+        int result = rpsCalc.CalculateScore(opponentMove, myMove);
 
         result.Should().Be(expectedResult);
     }
@@ -32,7 +32,7 @@ public class RockPaperScissorsTest
     [InlineData('C','Z', 6)]
     public void SameShapesShouldResultInDraw(char opponentMove, char myMove, int expectedResult)
     {
-        int result = rpsCalc.CalculateOutcome(opponentMove, myMove);
+        int result = rpsCalc.CalculateScore(opponentMove, myMove);
 
         result.Should().Be(expectedResult);
     }
