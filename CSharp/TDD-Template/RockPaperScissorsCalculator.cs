@@ -10,28 +10,16 @@
             var myShape = CreateShape(myself);
             var opponentShape = CreateShape(opponent);
 
-            if (IsDraw(opponentShape, myShape))
+            if (myShape.IsDraw(opponentShape))
             {
                 return DRAW_SCORE + (int)myShape;
             }
-            if (OpponentWins(opponentShape, myShape))
+            if (myShape.IsLoose(opponentShape))
             {
                 return (int)myShape;
             }
 
             return WIN_SCORE + (int)myShape;
-        }
-
-        private static bool OpponentWins(Shape opponentShape, Shape myShape)
-        {
-            return myShape == Shape.Scissor && opponentShape == Shape.Rock
-                            || myShape == Shape.Rock && opponentShape == Shape.Paper
-                            || myShape == Shape.Paper && opponentShape == Shape.Scissor;
-        }
-
-        private static bool IsDraw(Shape opponentShape, Shape myShape)
-        {
-            return opponentShape == myShape;
         }
 
         private static Shape CreateShape(char input)
