@@ -12,19 +12,13 @@ public class RockPaperScissorsTest
         result.Should().Be(8);
     }
 
-    [Fact]
-    public void RockShouldDrawRock()
+    [Theory]
+    [InlineData('B','Y', 5)]
+    [InlineData('A','X', 4)]
+    public void SameShapesShouldResultInDraw(char opponentMove, char myMove, int expectedResult)
     {
-        int result = rpsCalc.CalculateOutcome('A', 'X');
+        int result = rpsCalc.CalculateOutcome(opponentMove, myMove);
 
-        result.Should().Be(4);
-    }
-
-    [Fact]
-    public void PaperShouldDrawPaper()
-    {
-        int result = rpsCalc.CalculateOutcome('B', 'Y');
-
-        result.Should().Be(5);
+        result.Should().Be(expectedResult);
     }
 }
