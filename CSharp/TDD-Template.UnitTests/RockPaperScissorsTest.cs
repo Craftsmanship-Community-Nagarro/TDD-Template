@@ -13,8 +13,9 @@ public class RockPaperScissorsTest
     }
 
     [Theory]
-    [InlineData('B','Y', 5)]
     [InlineData('A','X', 4)]
+    [InlineData('B','Y', 5)]
+    [InlineData('C','Z', 6)]
     public void SameShapesShouldResultInDraw(char opponentMove, char myMove, int expectedResult)
     {
         int result = rpsCalc.CalculateOutcome(opponentMove, myMove);
