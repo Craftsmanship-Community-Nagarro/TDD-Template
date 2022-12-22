@@ -12,18 +12,6 @@
         private const int DRAW_SCORE = 3;
         private const int WIN_SCORE = 6;
 
-        public static bool IsDraw(this Shape myShape, Shape opponentShape)
-        {
-            return opponentShape == myShape;
-        }
-
-        public static bool IsLoose(this Shape myShape, Shape opponentShape)
-        {
-            return myShape == Shape.Scissor && opponentShape == Shape.Rock
-                            || myShape == Shape.Rock && opponentShape == Shape.Paper
-                            || myShape == Shape.Paper && opponentShape == Shape.Scissor;
-        }
-
         public static int Score(this Shape myShape, Shape opponentShape)
         {
             if (myShape.IsDraw(opponentShape))
@@ -37,5 +25,18 @@
 
             return WIN_SCORE + (int)myShape;
         }
+
+        private static bool IsDraw(this Shape myShape, Shape opponentShape)
+        {
+            return opponentShape == myShape;
+        }
+
+        private static bool IsLoose(this Shape myShape, Shape opponentShape)
+        {
+            return myShape == Shape.Scissor && opponentShape == Shape.Rock
+                            || myShape == Shape.Rock && opponentShape == Shape.Paper
+                            || myShape == Shape.Paper && opponentShape == Shape.Scissor;
+        }
+
     }
 }
