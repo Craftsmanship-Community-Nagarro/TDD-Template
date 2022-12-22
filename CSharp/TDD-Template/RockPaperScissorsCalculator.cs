@@ -1,27 +1,26 @@
-﻿namespace TDD_Template
+﻿namespace TDD_Template;
+
+public class RockPaperScissorsCalculator
 {
-    public class RockPaperScissorsCalculator
+    public int CalculateScore(char opponent, char myself)
     {
-        public int CalculateScore(char opponent, char myself)
-        {
-            var myShape = CreateShape(myself);
-            var opponentShape = CreateShape(opponent);
+        var myShape = CreateShape(myself);
+        var opponentShape = CreateShape(opponent);
 
-            return myShape.Score(opponentShape);
-        }
+        return myShape.Score(opponentShape);
+    }
 
-        private static Shape CreateShape(char input)
+    private static Shape CreateShape(char input)
+    {
+        return input switch
         {
-            return input switch
-            {
-                'X' => Shape.Rock,
-                'A' => Shape.Rock,
-                'Y' => Shape.Paper,
-                'B' => Shape.Paper,
-                'Z' => Shape.Scissor,
-                'C' => Shape.Scissor,
-                _ => throw new ArgumentException($"No valid {nameof(input)}: {input}")
-            };
-        }
+            'X' => Shape.Rock,
+            'A' => Shape.Rock,
+            'Y' => Shape.Paper,
+            'B' => Shape.Paper,
+            'Z' => Shape.Scissor,
+            'C' => Shape.Scissor,
+            _ => throw new ArgumentException($"No valid {nameof(input)}: {input}")
+        };
     }
 }
