@@ -12,7 +12,7 @@
 
         private static Shape CreateShape(char input)
         {
-            Shape shape = input switch
+            return input switch
             {
                 'X' => Shape.Rock,
                 'A' => Shape.Rock,
@@ -20,10 +20,8 @@
                 'B' => Shape.Paper,
                 'Z' => Shape.Scissor,
                 'C' => Shape.Scissor,
-                _ => 0
+                _ => throw new ArgumentException($"No valid {nameof(input)}: {input}")
             };
-
-            return shape;
         }
     }
 }
