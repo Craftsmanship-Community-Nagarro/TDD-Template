@@ -4,12 +4,15 @@ public class RockPaperScissorsTest
 {
     private RockPaperScissorsCalculator rpsCalc = new RockPaperScissorsCalculator();
 
-    [Fact]
-    public void PaperShouldDefeatRock()
+    [Theory]
+    [InlineData('A', 'Y', 8)]
+    [InlineData('B', 'Z', 9)]
+    [InlineData('C', 'X', 7)]
+    public void MyShapeShouldWin(char opponentMove, char myMove, int expectedResult)
     {
-        int result = rpsCalc.CalculateOutcome('A','Y');
+        int result = rpsCalc.CalculateOutcome(opponentMove, myMove);
 
-        result.Should().Be(8);
+        result.Should().Be(expectedResult);
     }
 
     [Theory]
