@@ -3,20 +3,35 @@
     public class RockPaperScissorsCalculator
     {
         private const int DRAW_SCORE = 3;
+        private const int WIN_SCORE = 6;
 
         public int CalculateOutcome(char opponent, char myself)
         {
+            Shape myShape = CreateShape(myself);
             if (IsDraw(opponent, myself))
             {
-                if (myself == 'X')
-                    return DRAW_SCORE + 1;
-                if (myself == 'Y')
-                    return DRAW_SCORE + 2;
-                if (myself == 'Z')
-                    return DRAW_SCORE + 3;
-
+                return DRAW_SCORE + (int)myShape;
             }
-            return 8;
+            return WIN_SCORE + (int) myShape;
+        }
+
+        private static Shape CreateShape(char myself)
+        {
+            Shape shape = 0;
+            switch (myself)
+            {
+                case 'X':
+                    shape = Shape.Rock;
+                    break;
+                case 'Y':
+                    shape = Shape.Paper;
+                    break;
+                case 'Z':
+                    shape = Shape.Scissor;
+                    break;
+            }
+
+            return shape;
         }
 
         private bool IsDraw(char opponent, char myself)
@@ -25,5 +40,12 @@
                 || opponent == 'B' && myself == 'Y'
                 || opponent == 'C' && myself == 'Z';
         }
+    }
+
+    public enum Shape
+    {
+        Rock = 1,
+        Paper = 2,
+        Scissor = 3
     }
 }
