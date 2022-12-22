@@ -16,6 +16,17 @@ public class RockPaperScissorsTest
     }
 
     [Theory]
+    [InlineData('A', 'Z', 3)]
+    [InlineData('B', 'X', 1)]
+    [InlineData('C', 'Y', 2)]
+    public void MyShapeShouldLoose(char opponentMove, char myMove, int expectedResult)
+    {
+        int result = rpsCalc.CalculateOutcome(opponentMove, myMove);
+
+        result.Should().Be(expectedResult);
+    }
+
+    [Theory]
     [InlineData('A','X', 4)]
     [InlineData('B','Y', 5)]
     [InlineData('C','Z', 6)]

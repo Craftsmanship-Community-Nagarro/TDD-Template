@@ -14,8 +14,19 @@
             {
                 return DRAW_SCORE + (int)myShape;
             }
+            if (OpponentWins(opponentShape, myShape))
+            {
+                return (int)myShape;
+            }
 
-            return WIN_SCORE + (int) myShape;
+            return WIN_SCORE + (int)myShape;
+        }
+
+        private static bool OpponentWins(Shape opponentShape, Shape myShape)
+        {
+            return myShape == Shape.Scissor && opponentShape == Shape.Rock
+                            || myShape == Shape.Rock && opponentShape == Shape.Paper
+                            || myShape == Shape.Paper && opponentShape == Shape.Scissor;
         }
 
         private bool IsDraw(Shape opponentShape, Shape myShape)
