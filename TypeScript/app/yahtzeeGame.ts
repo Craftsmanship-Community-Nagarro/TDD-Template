@@ -32,7 +32,7 @@ export class Player {
         if(this.availableRules.includes(usedRule))
         this.availableRules.splice(usedRule);
         else
-        throw new TypeError("Already used rule!");
+        throw new TypeError();
     }
     
 }
