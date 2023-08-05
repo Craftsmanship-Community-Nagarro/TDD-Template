@@ -17,3 +17,8 @@ it('Shouldn\'t be Yahtzee if already scored', () => {
     game.score(2,2,2,2,2,Rule.Yahtzee);
     expect(() => {game.score(2,2,2,2,2,Rule.Yahtzee)}).toThrow();
 });
+
+it('Should be the sum of all dices', () => {
+    let game = new Game();
+    expect(game.score(1,2,3,4,5,Rule.Sum)).toBe(15);
+})

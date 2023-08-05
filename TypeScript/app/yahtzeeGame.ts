@@ -1,5 +1,6 @@
 export enum Rule {
-    Yahtzee
+    Yahtzee,
+    Sum
 }
 
 export class Game {
@@ -11,10 +12,12 @@ export class Game {
         this.player.removeRule(rule);
         let numberArray: number[] = [dieOne, dieTwo, dieThree, dieFour, dieFive];
 
-        if(this.areDiceValuesEqual(numberArray))
-        return 50;
+        if(rule === Rule.Yahtzee)
+        return this.areDiceValuesEqual(numberArray) ? 50 : 0;
+        else if(rule == Rule.Sum)
+        return dieOne + dieTwo + dieThree + dieFour + dieFive
         else
-        return 0
+        return 0;
     };
 
     areDiceValuesEqual = (diceValues: number[]): boolean => {
@@ -26,7 +29,7 @@ export class Game {
 }
 
 export class Player {
-    availableRules: Rule[] = [Rule.Yahtzee]
+    availableRules: Rule[] = [Rule.Yahtzee,Rule.Sum]
 
     removeRule = (usedRule: Rule) => {
         if(this.availableRules.includes(usedRule))
