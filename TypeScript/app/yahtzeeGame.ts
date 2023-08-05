@@ -29,7 +29,7 @@ export class Game {
 }
 
 export class Player {
-    availableRules: Rule[] = [Rule.Yahtzee,Rule.Sum]
+    availableRules: Rule[] = [...Object.values(Rule) as Rule[]]
 
     removeRule = (usedRule: Rule) => {
         if(this.availableRules.includes(usedRule))
