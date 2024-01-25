@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class CamelCards {
   public HandType computeType(String hand) {
     validateParameters(hand);
-    return analyzeFrequencies(createFrequencies(extractFrequenciesFromCharacters(hand)));
+    return parseFrequencies(createFrequencies(extractFrequenciesFromCharacters(hand)));
   }
 
   private static void validateParameters(String hand) {
@@ -24,7 +24,7 @@ public class CamelCards {
     }
   }
 
-  private static HandType analyzeFrequencies(List<Long> frequencies) {
+  private static HandType parseFrequencies(List<Long> frequencies) {
     if (frequencies.equals(List.of(1L, 4L))) {
       return HandType.FourOfAKind;
     } else if (frequencies.equals(List.of(2L, 3L))) {
