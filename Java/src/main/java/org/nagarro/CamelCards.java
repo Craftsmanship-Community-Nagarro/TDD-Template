@@ -1,5 +1,7 @@
 package org.nagarro;
 
+import java.util.List;
+
 public class CamelCards {
   public HandType computeType(String hand) {
 
@@ -14,6 +16,8 @@ public class CamelCards {
       if (count == 4) {
         return HandType.FourOfAKind;
       }
+      List<Integer> counts = frequencies(hand);
+
       if (count == 3) {
         return HandType.ThreeOfAKind;
       }
@@ -22,7 +26,13 @@ public class CamelCards {
       }
     }
 
+
+
     //TODO: Refactor to Stream API
     return HandType.HighCard;
+  }
+
+  private List<Integer> frequencies(String hand) {
+
   }
 }

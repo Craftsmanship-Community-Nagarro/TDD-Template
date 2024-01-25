@@ -22,6 +22,13 @@ public class CamelCardsTest {
     }
 
     @Test
+    public void FullHouse() {
+        HandType result = new CamelCards().computeType("22233");
+        assertThat(result).isEqualTo(HandType.FullHouse);
+
+    }
+
+    @Test
     public void threeOfAKind() {
         HandType result = new CamelCards().computeType("22213");
         assertThat(result).isEqualTo(HandType.ThreeOfAKind);
