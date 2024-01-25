@@ -21,4 +21,16 @@ public class CamelCardsTest {
         assertThat(result).isEqualTo(HandType.FourOfAKind);
     }
 
+    @Test
+    public void threeOfAKind() {
+        HandType result = new CamelCards().computeType("22213");
+        assertThat(result).isEqualTo(HandType.ThreeOfAKind);
+    }
+
+//    @Test
+//    public void noNoSense() {
+//        HandType result = new CamelCards().computeType("MCNCV");
+//        assertThat(result).isEqualTo(null);
+//    }
+
 }
