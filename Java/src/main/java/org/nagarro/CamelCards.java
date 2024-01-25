@@ -6,6 +6,31 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+/**
+ * This class is responsible for computing the type of a hand of Camel Cards.
+ *
+ * A map of characters and frequencies, where the key is the character and the value is the frequency
+ * 222AA
+ * Key: 2. Frequency: 3
+ * Key: A. Frequency: 2
+ * 23456
+ * Key 2. Frequency: 1
+ * Key 3, Frequency: 1
+ * .....
+ *
+ * Then analyze the frequencies
+ *
+ * For above examples
+ * 2 and 3 = Full house
+ * 1 and 4 = Four of a kind
+ * 1, 1 and 3 = Three of a kind
+ * 1, 2 and 2 = two pairs
+ * 1, 1, 1, and 2 = one pair
+ * 1, 1, 1, 1 and 1 = high card
+ *
+ * TODO: We can abstract above combinations to make a generic tool, e.g. arbitrary number of hands and arbitrary number of rules.
+ * @author marco.avila@nagarro.com
+ */
 public class CamelCards {
   public HandType computeType(String hand) {
     validateParameters(hand);
