@@ -44,6 +44,13 @@ public class CamelCardsTest {
         assertThat(result).isEqualTo(HandType.OnePair);
     }
 
+
+    @Test
+    public void twoPair() {
+        HandType result = new CamelCards().computeType("22335");
+        assertThat(result).isEqualTo(HandType.TwoPair);
+    }
+
     @Test
     public void highCard() {
         HandType result = new CamelCards().computeType("23456");
