@@ -1,5 +1,5 @@
 package org.nagarro;
 
 public enum HandType {
-    FiveOfAKind
+    FourOfAKind, ThreeOfAKind, FiveOfAKind
 }
