@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class CamelCards {
   public HandType computeType(String hand) {
     validateParameters(hand);
-    return analyzeFrequencies(createFrequencies(associatesCharactersAndFrequencies(hand)));
+    return analyzeFrequencies(createFrequencies(extractFrequenciesFromCharacters(hand)));
   }
 
   private static void validateParameters(String hand) {
@@ -47,7 +47,7 @@ public class CamelCards {
     return frequencyMap.values().stream().sorted().toList();
   }
 
-  private static Map<Character, Long> associatesCharactersAndFrequencies(String hand) {
+  private static Map<Character, Long> extractFrequenciesFromCharacters(String hand) {
     return hand.chars()
         .mapToObj(c -> (char) c)
         .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
