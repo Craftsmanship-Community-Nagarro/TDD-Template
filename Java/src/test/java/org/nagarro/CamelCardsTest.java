@@ -9,7 +9,6 @@ public class CamelCardsTest {
     @Test
     public void fiveOfAKind() {
         HandType result = new CamelCards().computeType("22222");
-
         assertThat(result).isEqualTo(HandType.FiveOfAKind);
     }
 }
