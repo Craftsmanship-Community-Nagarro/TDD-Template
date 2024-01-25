@@ -1,7 +1,7 @@
 package org.nagarro;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CamelCards {
   public HandType computeType(String hand) {
@@ -35,10 +35,7 @@ public class CamelCards {
   }
 
   private List<Integer> frequencies(String hand) {
-    List<Integer> result = new ArrayList<>();
-    hand.chars().forEach(c -> {
-      result.add((int) hand.chars().filter(x -> x == c).count());
-    });
-    return result;
+    return hand.chars().mapToObj(c -> (int) hand.chars().filter(x -> x == c).count()).collect(Collectors.toList());
+
   }
 }
