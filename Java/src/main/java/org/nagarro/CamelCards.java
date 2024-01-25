@@ -37,6 +37,8 @@ public class CamelCards {
       return HandType.OnePair;
     } else if (frequencies.equals(List.of(5L))) {
       return HandType.FiveOfAKind;
+    } else if (frequencies.equals(List.of(1L, 1L, 1L, 1L, 1L))) {
+      return HandType.HighCard;
     }
 
     return null;

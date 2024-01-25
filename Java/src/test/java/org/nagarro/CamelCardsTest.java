@@ -64,4 +64,11 @@ public class CamelCardsTest {
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("Invalid hand (null)");
     }
+
+    @Test
+    public void highCard() {
+        HandType result = new CamelCards().computeType("23456");
+
+        assertThat(result).isEqualTo(HandType.HighCard);
+    }
 }

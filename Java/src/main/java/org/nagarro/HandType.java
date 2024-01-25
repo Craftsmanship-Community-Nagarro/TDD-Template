@@ -6,5 +6,6 @@ public enum HandType {
     FullHouse,
     ThreeOfAKind,
     TwoPairs,
-    OnePair
+    OnePair,
+    HighCard
 }
