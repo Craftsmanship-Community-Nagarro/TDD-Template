@@ -8,7 +8,11 @@ import java.util.stream.Collectors;
 
 public class CamelCards {
   public HandType computeType(String hand) {
+    validateParameters(hand);
+    return analyzeFrequencies(createFrequencies(associatesCharactersAndFrequencies(hand)));
+  }
 
+  private static void validateParameters(String hand) {
     if (Objects.isNull(hand)) {
       throw new IllegalArgumentException("Invalid hand (null)");
     }
@@ -18,13 +22,9 @@ public class CamelCards {
     if (!matches) {
       throw new IllegalArgumentException("Invalid hand (" + hand + ")");
     }
+  }
 
-    Map<Character, Long> frequencyMap = hand.chars()
-        .mapToObj(c -> (char) c)
-        .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-
-    List<Long> frequencies = frequencyMap.values().stream().sorted().toList();
-
+  private static HandType analyzeFrequencies(List<Long> frequencies) {
     if (frequencies.equals(List.of(1L, 4L))) {
       return HandType.FourOfAKind;
     } else if (frequencies.equals(List.of(2L, 3L))) {
@@ -40,9 +40,16 @@ public class CamelCards {
     } else if (frequencies.equals(List.of(1L, 1L, 1L, 1L, 1L))) {
       return HandType.HighCard;
     }
-
     return null;
+  }
 
+  private static List<Long> createFrequencies(Map<Character, Long> frequencyMap) {
+    return frequencyMap.values().stream().sorted().toList();
+  }
 
+  private static Map<Character, Long> associatesCharactersAndFrequencies(String hand) {
+    return hand.chars()
+        .mapToObj(c -> (char) c)
+        .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
   }
 }
